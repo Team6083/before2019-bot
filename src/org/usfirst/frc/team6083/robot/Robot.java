@@ -9,6 +9,8 @@ package org.usfirst.frc.team6083.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
+
+import org.team6083.RobotPower;
 import org.team6083.drive.DifferentialDrive;
 import org.team6083.util.DashBoard;
 import org.team6083.util.Joysticks;
@@ -17,6 +19,7 @@ import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 public class Robot extends IterativeRobot {
 	public static DifferentialDrive drive;
 	private static VictorSP left_1, left_2, right_1, right_2;
+	public static RobotPower pobotpower;
 	
 	@Override
 	public void robotInit() {
@@ -29,6 +32,7 @@ public class Robot extends IterativeRobot {
 		AutoEngine.init();
 		Joysticks.init();
 		DashBoard.init();
+		RobotPower.init();
 	}
 
 	

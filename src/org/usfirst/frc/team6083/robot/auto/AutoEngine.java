@@ -39,6 +39,8 @@ public class AutoEngine {
 	protected static final int rightEnc_ChA = 0;
 	protected static final int rightEnc_ChB = 1;
 	protected static final double disPerStep = 0.05236;
+	protected static final double kP = 0.005;
+	protected static final double kI = 10E-6;
 
 	protected static double leftSpeed;
 	protected static double rightSpeed;
@@ -135,6 +137,8 @@ public class AutoEngine {
 		
 		gyrowalker.setkP(SmartDashboard.getNumber("kP", 0));
 		gyrowalker.setkI(SmartDashboard.getNumber("kI", 0));
+		// set kP, kI
+		
 		SmartDashboard.putNumber("ki_resault", gyrowalker.getkI_result());
 		SmartDashboard.putString("CurrentStep", currentStep);
 		SmartDashboard.putNumber("Current Angle", gyrowalker.getCurrentAngle());
