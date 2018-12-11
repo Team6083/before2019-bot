@@ -10,23 +10,25 @@ package org.usfirst.frc.team6083.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.team6083.drive.DifferentialDrive;
+import org.team6083.util.DashBoard;
 import org.team6083.util.Joysticks;
 import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 
 public class Robot extends IterativeRobot {
-	private DifferentialDrive drive;
-	private VictorSP left_1, left_2, right_1, right_2;
+	public static DifferentialDrive drive;
+	private static VictorSP left_1, left_2, right_1, right_2;
 	
 	@Override
 	public void robotInit() {
 		left_1 = new VictorSP(0);
-		left_2 = new VictorSP(1);
-		right_1 = new VictorSP(2);
+		left_2 = new VictorSP(2);
+		right_1 = new VictorSP(1);
 		right_2 = new VictorSP(3);
 		drive = new DifferentialDrive(left_1, left_2, right_1, right_2);
 		
 		AutoEngine.init();
 		Joysticks.init();
+		DashBoard.init();
 	}
 
 	
@@ -45,6 +47,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Joysticks.update_data();
+		drive.tankDrive();
 	}
 
 	

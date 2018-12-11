@@ -1,6 +1,9 @@
 package org.usfirst.frc.team6083.robot.auto;
 
 import org.team6083.auto.GyroWalker;
+import org.usfirst.frc.team6083.robot.Robot;
+import org.usfirst.frc.team6083.robot.auto.modes.Baseline;
+import org.usfirst.frc.team6083.robot.auto.modes.Scale;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -67,6 +70,8 @@ public class AutoEngine {
 		
 		SmartDashboard.putNumber("autoDelay", 0);
 		SmartDashboard.putString("CurrentStep", "wait to start");
+		SmartDashboard.putNumber("kP", gyrowalker.getkP());
+		SmartDashboard.putNumber("kI", gyrowalker.getkI());
 	}
 
 	public static void start() {
@@ -106,26 +111,31 @@ public class AutoEngine {
 
 		switch (m_autoSelected) {
 		case kM1:
-			
+			Baseline.loop();
 			break;
 		case kM2:
-			
+			Scale.loop();
 			break;
 		case kDoNithing:
 		default:
 			currentStep = "DoNothing";
 			leftSpeed = 0;
 			rightSpeed = 0;
-			gyrowalker.setTargetAngle(0);
+			gyrowalker.setTargetAngle(SmartDashboard.getNumber("Target Angle", gyrowalker.getTargetAngle()));
 			break;
 		}
 		
 		gyrowalker.calculate(leftSpeed, rightSpeed);
-
+		
 		leftSpeed = gyrowalker.getLeftPower();
 		rightSpeed = gyrowalker.getRightPower();
 		
-
+		Robot.drive.directControl(leftSpeed, -rightSpeed);
+		
+		
+		gyrowalker.setkP(SmartDashboard.getNumber("kP", 0));
+		gyrowalker.setkI(SmartDashboard.getNumber("kI", 0));
+		SmartDashboard.putNumber("ki_resault", gyrowalker.getkI_result());
 		SmartDashboard.putString("CurrentStep", currentStep);
 		SmartDashboard.putNumber("Current Angle", gyrowalker.getCurrentAngle());
 		SmartDashboard.putNumber("Target Angle", gyrowalker.getTargetAngle());
