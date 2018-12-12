@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 		AutoEngine.init();
 		Joysticks.init();
 		DashBoard.init();
-		RobotPower.init();
+		RobotPower.init(1);
 	}
 
 	

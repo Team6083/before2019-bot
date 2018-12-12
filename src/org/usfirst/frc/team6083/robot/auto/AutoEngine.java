@@ -40,7 +40,7 @@ public class AutoEngine {
 	protected static final int rightEnc_ChB = 1;
 	protected static final double disPerStep = 0.05236;
 	protected static final double kP = 0.005;
-	protected static final double kI = 10E-6;
+	protected static final double kI = 0.001;
 
 	protected static double leftSpeed;
 	protected static double rightSpeed;
