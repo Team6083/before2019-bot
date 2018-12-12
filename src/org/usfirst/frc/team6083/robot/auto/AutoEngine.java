@@ -40,8 +40,8 @@ public class AutoEngine {
 	protected static final int rightEnc_ChA = 0;
 	protected static final int rightEnc_ChB = 1;
 	protected static final double disPerStep = 0.05236;
-	protected static final double kP = 0.005;
-	protected static final double kI = 0.001;
+	protected static double kP = 0.025;
+	protected static double kI = 0.01;
 
 	protected static double leftSpeed;
 	protected static double rightSpeed;
@@ -75,11 +75,13 @@ public class AutoEngine {
 		rightEnc = new Encoder(rightEnc_ChA, rightEnc_ChB);
 		rightEnc.setReverseDirection(false);
 		
+		gyrowalker.setSmallAngle(0);
+		
 		SmartDashboard.putNumber("autoDelay", 0);
 		SmartDashboard.putString("CurrentStep", "wait to start");
-		SmartDashboard.putNumber("kP", gyrowalker.getkP());
-		SmartDashboard.putNumber("kI", gyrowalker.getkI());
-
+		SmartDashboard.putNumber("kP", kP);
+		SmartDashboard.putNumber("kI", kI);
+		
 		dash.putReady();
 	}
 
@@ -142,8 +144,10 @@ public class AutoEngine {
 		Robot.drive.directControl(leftSpeed, -rightSpeed);
 		
 		
-		gyrowalker.setkP(SmartDashboard.getNumber("kP", 0));
-		gyrowalker.setkI(SmartDashboard.getNumber("kI", 0));
+		kP = SmartDashboard.getNumber("kP", 0);
+		kI = SmartDashboard.getNumber("kI", 0);
+		gyrowalker.setkP(kP);
+		gyrowalker.setkI(kI);
 		// set kP, kI
 		
 		SmartDashboard.putNumber("ki_resault", gyrowalker.getkI_result());
