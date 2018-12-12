@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6083.robot.auto;
 
 import org.team6083.auto.GyroWalker;
+import org.team6083.util.DashBoard;
 import org.usfirst.frc.team6083.robot.Robot;
 import org.usfirst.frc.team6083.robot.auto.modes.Baseline;
 import org.usfirst.frc.team6083.robot.auto.modes.Scale;
