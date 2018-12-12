@@ -46,12 +46,16 @@ public class AutoEngine {
 	protected static double rightSpeed;
 	protected static double leftDistance;
 	protected static double rightDistance;
+	protected static DashBoard dash;
 
 	protected static int step;
 	protected static String currentStep = "";
 	protected static Timer autoTimer = new Timer();
 
 	public static void init() {
+		dash = new DashBoard("AutoEngine");
+		dash.putWarning();
+
 		m_chooser.addDefault("Do nothing", kDoNithing);
 		m_chooser.addObject("Move 1", kM1);
 		m_chooser.addObject("Mode 2", kM2);
@@ -74,6 +78,8 @@ public class AutoEngine {
 		SmartDashboard.putString("CurrentStep", "wait to start");
 		SmartDashboard.putNumber("kP", gyrowalker.getkP());
 		SmartDashboard.putNumber("kI", gyrowalker.getkI());
+
+		dash.putReady();
 	}
 
 	public static void start() {
