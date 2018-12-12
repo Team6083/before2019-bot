@@ -4,7 +4,6 @@ import org.team6083.auto.GyroWalker;
 import org.team6083.util.DashBoard;
 import org.usfirst.frc.team6083.robot.Robot;
 import org.usfirst.frc.team6083.robot.auto.modes.PutMark;
-import org.usfirst.frc.team6083.robot.auto.modes.Scale;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -16,8 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoEngine {
 	protected static final String kDoNithing = "Do nothing";
-	protected static final String kM1 = "Mode 1";
-	protected static final String kM2 = "Mode 2";
+	protected static final String kPutMark = "Put Mark";
 	protected static String m_autoSelected;
 
 	protected static final String kR = "Red";
@@ -58,8 +56,7 @@ public class AutoEngine {
 		dash.putWarning();
 
 		m_chooser.addDefault("Do nothing", kDoNithing);
-		m_chooser.addObject("Move 1", kM1);
-		m_chooser.addObject("Mode 2", kM2);
+		m_chooser.addObject("Put mark", kPutMark);
 		SmartDashboard.putData("Auto choices", m_chooser);
 
 		a_chooser.addDefault("Red", kR);
@@ -121,11 +118,8 @@ public class AutoEngine {
 		rightDistance = rightEnc.getDistance() * disPerStep;
 
 		switch (m_autoSelected) {
-		case kM1:
+		case kPutMark:
 			PutMark.loop();
-			break;
-		case kM2:
-			Scale.loop();
 			break;
 		case kDoNithing:
 		default:
