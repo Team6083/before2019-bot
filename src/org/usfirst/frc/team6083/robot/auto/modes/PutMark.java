@@ -37,8 +37,10 @@ public class PutMark extends AutoEngine {
 			currentStep = "Put 1";
 			leftSpeed = 0;
 			rightSpeed = 0;
-			markOut();
-			nextStep();
+			if(autoTimer.get()>1) {
+				markOut();
+				nextStep();
+			}
 			break;
 		case 4:
 			currentStep = "Walk 2";
@@ -48,8 +50,10 @@ public class PutMark extends AutoEngine {
 			currentStep = "Put 2";
 			leftSpeed = 0;
 			rightSpeed = 0;
-			markOut();
-			nextStep();
+			if(autoTimer.get()>1) {
+				markOut();
+				nextStep();
+			}
 			break;
 		case 6:
 			currentStep = "Walk 3";
@@ -59,8 +63,10 @@ public class PutMark extends AutoEngine {
 			currentStep = "Put 3";
 			leftSpeed = 0;
 			rightSpeed = 0;
-			markOut();
-			nextStep();
+			if(autoTimer.get()>1) {
+				markOut();
+				nextStep();
+			}
 			break;
 		default:
 			currentStep = "none";
