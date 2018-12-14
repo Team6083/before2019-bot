@@ -18,18 +18,25 @@ public class PutMark extends AutoEngine {
 		case 1:
 			currentStep = "Set Turn 1";
 			gyrowalker.setTargetAngle((station == 2)?90:-90);
-			nextStep();
+			leftSpeed = 0;
+			rightSpeed = 0;
+			if(autoTimer.get()>0.5) {
+				// wait a second before turn
+				nextStep();
+			}
 			break;
 		case 2:
 			currentStep = "Turn 1";
 			leftSpeed = 0;
 			rightSpeed = 0;
-			if (gyrowalker.getErrorAngle() < 10) {
+			if (gyrowalker.getErrorAngle() < 10&&autoTimer.get()>1) {
 				nextStep();
 			}
 			break;
 		case 3:
 			currentStep = "Put 1";
+			leftSpeed = 0;
+			rightSpeed = 0;
 			markOut();
 			nextStep();
 			break;
@@ -39,6 +46,8 @@ public class PutMark extends AutoEngine {
 			break;
 		case 5:
 			currentStep = "Put 2";
+			leftSpeed = 0;
+			rightSpeed = 0;
 			markOut();
 			nextStep();
 			break;
@@ -48,6 +57,8 @@ public class PutMark extends AutoEngine {
 			break;
 		case 7:
 			currentStep = "Put 3";
+			leftSpeed = 0;
+			rightSpeed = 0;
 			markOut();
 			nextStep();
 			break;
@@ -55,6 +66,7 @@ public class PutMark extends AutoEngine {
 			currentStep = "none";
 			leftSpeed = 0;
 			rightSpeed = 0;
+			gyrowalker.setTargetAngle(gyrowalker.getTargetAngle());
 			break;
 		}
 	}
