@@ -25,10 +25,10 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotInit() {
-		left_1 = new VictorSP(0);
-		left_2 = new VictorSP(2);
-		right_1 = new VictorSP(1);
-		right_2 = new VictorSP(3);
+		left_1 = new VictorSP(5);
+		left_2 = new VictorSP(6);
+		right_1 = new VictorSP(9);
+		right_2 = new VictorSP(8);
 		drive = new DifferentialDrive(left_1, left_2, right_1, right_2);
 		markServo = new Servo(3);
 		

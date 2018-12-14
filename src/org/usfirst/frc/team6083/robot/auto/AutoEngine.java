@@ -33,10 +33,10 @@ public class AutoEngine {
 	protected static GyroWalker gyrowalker;
 	protected static Encoder leftEnc, rightEnc;
 
-	protected static final int leftEnc_ChA = 8;
-	protected static final int leftEnc_ChB = 9;
-	protected static final int rightEnc_ChA = 0;
-	protected static final int rightEnc_ChB = 1;
+	protected static final int leftEnc_ChA = 0;
+	protected static final int leftEnc_ChB = 1;
+	protected static final int rightEnc_ChA = 8;
+	protected static final int rightEnc_ChB = 9;
 	protected static final double disPerStep = 0.05236;
 	protected static final double markOutPos = 1;
 	protected static final double markInPos = 0;
