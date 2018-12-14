@@ -41,8 +41,8 @@ public class AutoEngine {
 	protected static final double markOutPos = 1;
 	protected static final double markInPos = 0;
 	
-	protected static double kP = 0.025;
-	protected static double kI = 0.01;
+	protected static double kP = 0.015;
+	protected static double kI = 5.0E-4;
 
 	protected static double leftSpeed;
 	protected static double rightSpeed;
@@ -158,14 +158,14 @@ public class AutoEngine {
 	}
 
 	protected static void nextStep() {
-		step++;
-		System.out.println("Finish step:"+currentStep);
+		System.out.println("Finish step:"+currentStep+"("+step+")");
 		autoTimer.stop();
 		autoTimer.reset();
 		autoTimer.start();
 		System.out.println("Encoder reset on "+ leftDistance +", "+ rightDistance);
 		leftEnc.reset();
 		rightEnc.reset();
+		step++;
 	}
 
 	public static void walk(double dis) {
