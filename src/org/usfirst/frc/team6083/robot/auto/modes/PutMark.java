@@ -1,9 +1,7 @@
 package org.usfirst.frc.team6083.robot.auto.modes;
 
-import org.usfirst.frc.team6083.robot.Robot;
 import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 
-import edu.wpi.first.wpilibj.Timer;
 
 public class PutMark extends AutoEngine {
 
