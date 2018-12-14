@@ -38,8 +38,8 @@ public class AutoEngine {
 	protected static final int rightEnc_ChA = 8;
 	protected static final int rightEnc_ChB = 9;
 	protected static final double disPerStep = 0.05236;
-	protected static final double markOutPos = 1;
-	protected static final double markInPos = 0;
+	protected static final double markOutPos = 0.6;
+	protected static final double markInPos = 1;
 	
 	protected static double kP = 0.015;
 	protected static double kI = 5.0E-4;
@@ -113,6 +113,7 @@ public class AutoEngine {
 		
 		Timer.delay(SmartDashboard.getNumber("autoDelay", 0));
 		gyrowalker.setTargetAngle(0);
+		Robot.markServo.set(markInPos);
 	}
 
 	public static void loop() {
