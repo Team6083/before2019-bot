@@ -1,6 +1,9 @@
 package org.usfirst.frc.team6083.robot.auto.modes;
 
+import org.usfirst.frc.team6083.robot.Robot;
 import org.usfirst.frc.team6083.robot.auto.AutoEngine;
+
+import edu.wpi.first.wpilibj.Timer;
 
 public class PutMark extends AutoEngine {
 
@@ -29,7 +32,8 @@ public class PutMark extends AutoEngine {
 			break;
 		case 3:
 			currentStep = "Put 1";
-			//TODO put1 mark code here
+			markOut();
+			nextStep();
 			break;
 		case 4:
 			currentStep = "Walk 2";
@@ -37,7 +41,8 @@ public class PutMark extends AutoEngine {
 			break;
 		case 5:
 			currentStep = "Put 2";
-			//TODO put2 mark code here
+			markOut();
+			nextStep();
 			break;
 		case 6:
 			currentStep = "Walk 3";
@@ -45,7 +50,8 @@ public class PutMark extends AutoEngine {
 			break;
 		case 7:
 			currentStep = "Put 3";
-			//TODO put2 mark code here
+			markOut();
+			nextStep();
 			break;
 		default:
 			currentStep = "none";

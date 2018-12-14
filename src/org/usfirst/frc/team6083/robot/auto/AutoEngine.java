@@ -38,6 +38,9 @@ public class AutoEngine {
 	protected static final int rightEnc_ChA = 0;
 	protected static final int rightEnc_ChB = 1;
 	protected static final double disPerStep = 0.05236;
+	protected static final double markOutPos = 1;
+	protected static final double markInPos = 0;
+	
 	protected static double kP = 0.025;
 	protected static double kI = 0.01;
 
@@ -207,6 +210,12 @@ public class AutoEngine {
 			}
 		}
 
+	}
+	
+	protected static void markOut() {
+		Robot.markServo.set(markOutPos);
+		Timer.delay(0.5);
+		Robot.markServo.set(markInPos);
 	}
 	
 	public static double getTranslateAngle() {
