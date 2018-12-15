@@ -215,7 +215,7 @@ public class AutoEngine {
 	
 	protected static void markOut() {
 		Robot.markServo.set(markOutPos);
-		Timer.delay(0.5);
+		Timer.delay(0.8);
 		Robot.markServo.set(markInPos);
 	}
 	
