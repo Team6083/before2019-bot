@@ -3,8 +3,7 @@ package org.usfirst.frc.team6083.robot.auto;
 import org.team6083.auto.GyroWalker;
 import org.team6083.util.DashBoard;
 import org.usfirst.frc.team6083.robot.Robot;
-import org.usfirst.frc.team6083.robot.auto.modes.Baseline;
-import org.usfirst.frc.team6083.robot.auto.modes.Scale;
+import org.usfirst.frc.team6083.robot.auto.modes.PutMark;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -16,8 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoEngine {
 	protected static final String kDoNithing = "Do nothing";
-	protected static final String kM1 = "Mode 1";
-	protected static final String kM2 = "Mode 2";
+	protected static final String kPutMark = "Put Mark";
 	protected static String m_autoSelected;
 
 	protected static final String kR = "Red";
@@ -35,13 +33,16 @@ public class AutoEngine {
 	protected static GyroWalker gyrowalker;
 	protected static Encoder leftEnc, rightEnc;
 
-	protected static final int leftEnc_ChA = 8;
-	protected static final int leftEnc_ChB = 9;
-	protected static final int rightEnc_ChA = 0;
-	protected static final int rightEnc_ChB = 1;
+	protected static final int leftEnc_ChA = 0;
+	protected static final int leftEnc_ChB = 1;
+	protected static final int rightEnc_ChA = 8;
+	protected static final int rightEnc_ChB = 9;
 	protected static final double disPerStep = 0.05236;
-	protected static double kP = 0.025;
-	protected static double kI = 0.01;
+	protected static final double markOutPos = 0.6;
+	protected static final double markInPos = 1;
+	
+	protected static double kP = 0.015;
+	protected static double kI = 5.0E-4;
 
 	protected static double leftSpeed;
 	protected static double rightSpeed;
@@ -58,8 +59,7 @@ public class AutoEngine {
 		dash.putWarning();
 
 		m_chooser.addDefault("Do nothing", kDoNithing);
-		m_chooser.addObject("Move 1", kM1);
-		m_chooser.addObject("Mode 2", kM2);
+		m_chooser.addObject("Put mark", kPutMark);
 		SmartDashboard.putData("Auto choices", m_chooser);
 
 		a_chooser.addDefault("Red", kR);
@@ -113,6 +113,7 @@ public class AutoEngine {
 		
 		Timer.delay(SmartDashboard.getNumber("autoDelay", 0));
 		gyrowalker.setTargetAngle(0);
+		Robot.markServo.set(markInPos);
 	}
 
 	public static void loop() {
@@ -121,11 +122,8 @@ public class AutoEngine {
 		rightDistance = rightEnc.getDistance() * disPerStep;
 
 		switch (m_autoSelected) {
-		case kM1:
-			Baseline.loop();
-			break;
-		case kM2:
-			Scale.loop();
+		case kPutMark:
+			PutMark.loop();
 			break;
 		case kDoNithing:
 		default:
@@ -161,14 +159,14 @@ public class AutoEngine {
 	}
 
 	protected static void nextStep() {
-		step++;
-		System.out.println("Finish step:"+currentStep);
+		System.out.println("Finish step:"+currentStep+"("+step+")");
 		autoTimer.stop();
 		autoTimer.reset();
 		autoTimer.start();
 		System.out.println("Encoder reset on "+ leftDistance +", "+ rightDistance);
 		leftEnc.reset();
 		rightEnc.reset();
+		step++;
 	}
 
 	public static void walk(double dis) {
@@ -213,6 +211,12 @@ public class AutoEngine {
 			}
 		}
 
+	}
+	
+	protected static void markOut() {
+		Robot.markServo.set(markOutPos);
+		Timer.delay(0.8);
+		Robot.markServo.set(markInPos);
 	}
 	
 	public static double getTranslateAngle() {

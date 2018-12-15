@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6083.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.VictorSP;
 
 import org.team6083.RobotPower;
@@ -18,16 +19,19 @@ import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 
 public class Robot extends IterativeRobot {
 	public static DifferentialDrive drive;
-	private static VictorSP left_1, left_2, right_1, right_2;
+	public static VictorSP left_1, left_2, right_1, right_2,front;
 	public static RobotPower pobotpower;
+	public static Servo markServo;
 	
 	@Override
 	public void robotInit() {
-		left_1 = new VictorSP(0);
-		left_2 = new VictorSP(2);
-		right_1 = new VictorSP(1);
-		right_2 = new VictorSP(3);
+		left_1 = new VictorSP(5);
+		left_2 = new VictorSP(6);
+		right_1 = new VictorSP(9);
+		right_2 = new VictorSP(8);
+		front = new VictorSP(7);
 		drive = new DifferentialDrive(left_1, left_2, right_1, right_2);
+		markServo = new Servo(3);
 		
 		AutoEngine.init();
 		Joysticks.init();
@@ -52,6 +56,13 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Joysticks.update_data();
 		drive.tankDrive();
+		if(Joysticks.x) {
+			markServo.set(1);
+		}
+		else if(Joysticks.y) {
+			markServo.set(0.6);
+		}
+		front.set((Joysticks.rt-Joysticks.lt)/3);
 	}
 
 	
