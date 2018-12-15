@@ -1,12 +1,13 @@
 package org.usfirst.frc.team6083.robot.auto.modes;
 
+import org.usfirst.frc.team6083.robot.Robot;
 import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 
 
 public class PutMark extends AutoEngine {
 
-	private static final double zoneDis = 102;// In inch
-	private static final double walk2 = 20;
+	private static final double zoneDis = 95;// In inch
+	private static final double walk2 = 25;
 	private static final double walk3 = 39;
 
 	public static void loop() {

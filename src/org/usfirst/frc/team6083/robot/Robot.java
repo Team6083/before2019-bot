@@ -19,7 +19,7 @@ import org.usfirst.frc.team6083.robot.auto.AutoEngine;
 
 public class Robot extends IterativeRobot {
 	public static DifferentialDrive drive;
-	private static VictorSP left_1, left_2, right_1, right_2,front;
+	public static VictorSP left_1, left_2, right_1, right_2,front;
 	public static RobotPower pobotpower;
 	public static Servo markServo;
 	
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 		else if(Joysticks.y) {
 			markServo.set(0.6);
 		}
-		front.set((Joysticks.rt-Joysticks.lt)/4);
+		front.set((Joysticks.rt-Joysticks.lt)/3);
 	}
 
 	
